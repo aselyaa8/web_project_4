@@ -1,7 +1,9 @@
 # Project 4: Around The U.S.
-# Author: Assel Kadyrkul 2020
+Author: Assel Kadyrkul 2020
+https://aselyaa8.github.io/web_project_4/
 
 ### Overview
+
 
 * Figma
 * Images
