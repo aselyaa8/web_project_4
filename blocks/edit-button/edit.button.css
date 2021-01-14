@@ -1,0 +1,19 @@
+.edit-button {
+  width: 10px;
+  height: 10px;
+  padding: 6px;
+  border: 1px solid white;
+}
+
+@media screen and (max-width: 800px) {
+  .edit-button {
+    width: 7.5px;
+    height: 7.5px;
+    padding: 4.25px;
+    margin-left: 10px;
+  }
+}
+
+.edit-button:hover {
+  opacity: 0.6;
+}

@@ -1,0 +1,5 @@
+@import url(__container/modal__container.css);
+
+.modal {
+  display: none;
+}

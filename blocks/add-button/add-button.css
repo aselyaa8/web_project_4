@@ -1,0 +1,23 @@
+.add-button {
+  width: 22px;
+  height: 22px;
+  padding: 14px 64px;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .add-button {
+    width: 16px;
+    height: 16px;
+    padding: 17px 134px;
+    margin-top: 36px;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.add-button:hover {
+  opacity: 0.6;
+}

@@ -1,0 +1,20 @@
+.close-button {
+  margin: 0;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: -35px;
+  right: -35px;
+}
+
+.close-button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 800px) {
+  .close-button {
+    top: -40px;
+    right: 0;
+  }
+}

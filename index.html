@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sprint 4 project at Practicum by Yandex" />
+  <meta name="keywords" content="Around the U.S., profile, explorer" />
+  <meta name="author" content="Assel Kadyrkul" />
+  <link rel="stylesheet" href="pages/index.css" />
+  <title>Around the U.S.</title>
+
+</head>
+
+<body class="page">
+
+  <header class="header">
+    <img src="images/logo.svg" alt="Around the U.S." class="logo">
+    <hr class="header__line">
+  </header>
+
+  <main class="content">
+    <section class="profile">
+      <img src="images/Avatar.jpg" alt="Avatar photo of a man" class="profile__avatar">
+
+      <div class="profile__info">
+
+        <h1 class="profile__name">Jacques Cousteau</h1>
+
+        <input type="image" class="edit-button" src="images/edit-button.svg" alt="Submit Form" />
+        <p class="profile__description">Explorer</p>
+      </div>
+
+      <input type="image" class="add-button" src="images/add-button.svg" alt="add button" />
+    </section>
+
+    <section class="cards">
+      <article class="card">
+        <img src="images/photo1.jpg" alt="valley" class="card__image">
+        <p class="card__caption">Yosemite Valley</p>
+        <i onclick="likeToggle(0)" class="like-button like-button_disabled"></i>
+      </article>
+      <article class="card">
+        <img src="images/photo2.jpg" alt="lake" class="card__image">
+        <p class="card__caption">Lake Louise</p>
+        <i onclick="likeToggle(1)" class="like-button like-button_disabled"></i>
+      </article>
+      <article class="card">
+        <img src="images/photo3.jpg" alt="mountains" class="card__image">
+        <p class="card__caption">Bald Mountains</p>
+        <i onclick="likeToggle(2)" class="like-button like-button_disabled"></i>
+      </article>
+      <article class="card">
+        <img src="images/photo4.jpg" alt="night sky" class="card__image">
+        <p class="card__caption">Latemar</p>
+        <i onclick="likeToggle(3)" class="like-button like-button_disabled"></i>
+      </article>
+      <article class="card">
+        <img src="images/photo5.jpg" alt="park" class="card__image">
+        <p class="card__caption">Vanoise National Park</p>
+        <i onclick="likeToggle(4)" class="like-button like-button_disabled"></i>
+      </article>
+      <article class="card">
+        <img src="images/photo6.jpg" alt="lake" class="card__image">
+        <p class="card__caption">Lago di Braies</p>
+        <i onclick="likeToggle(5)" class="like-button like-button_disabled"></i>
+      </article>
+
+
+
+    </section>
+
+
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">&#169; 2020 Around The U.S.</p>
+  </footer>
+  <div class="modal">
+    <div class="modal__container">
+      <form action="" class="form">
+        <h2 class="form__heading">Edit profile</h2>
+        <input type="text" class="form__name">
+        <input type="text" class="form__description">
+        <button class="save-button" type="button">Save</button>
+      </form>
+      <input type="image" class="close-button" src="images/close-button.svg" alt="close button" />
+    </div>
+  </div>
+  <script src="script/script.js"></script>
+</body>
+
+</html>

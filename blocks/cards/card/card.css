@@ -1,0 +1,13 @@
+@import url(__caption/card__caption.css);
+@import url(__image/card__image.css);
+
+.card {
+  width: 282px;
+  height: 361px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
