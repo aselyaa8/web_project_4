@@ -1,7 +1,7 @@
 .card__caption {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   margin-left: 21px;
   margin-right: 21px;
   margin-top: 25px;

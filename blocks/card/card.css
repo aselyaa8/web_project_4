@@ -1,6 +1,7 @@
 @import url(__caption/card__caption.css);
 @import url(__text/card__text.css);
 @import url(__image/card__image.css);
+@import url(__like-button/card__like-button.css);
 
 .card {
   width: 282px;

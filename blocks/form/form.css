@@ -1,5 +1,6 @@
 @import url(__heading/form__heading.css);
 @import url(__input/form__input.css);
+@import url(__save-button/form__save-button.css);
 
 .form {
   font-family: 'Inter', Arial, sans-serif;
@@ -18,7 +19,7 @@
   border-radius: 10px;
   -webkit-box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
           box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-  width: 430px;
+  width: 358px;
   height: 330px;
   padding-left: 36px;
   padding-right: 36px;
@@ -26,7 +27,8 @@
 
 @media screen and (max-width: 800px) {
   .form {
-    max-width: 282px;
+    width: 238px;
+    height: 322px;
     padding-left: 22px;
     padding-right: 22px;
   }

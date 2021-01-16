@@ -5,7 +5,7 @@
   display: grid;
   -ms-grid-rows: 1fr 17px 1fr;
   grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat( auto-fill, minmax(282px, 1fr));
+  grid-template-columns: repeat( auto-fit, minmax(282px, 1fr));
   grid-gap: 17px;
   margin: 0;
   margin-left: auto;
