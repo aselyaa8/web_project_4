@@ -16,7 +16,6 @@
 
   <header class="header">
     <img src="images/logo.svg" alt="Around the U.S." class="logo">
-    <hr class="header__line">
   </header>
 
   <main class="content">
@@ -26,44 +25,54 @@
       <div class="profile__info">
 
         <h1 class="profile__name">Jacques Cousteau</h1>
-
-        <input type="image" class="edit-button" src="images/edit-button.svg" alt="Submit Form" />
+        <button type="button" class="edit-button"></button>
         <p class="profile__description">Explorer</p>
       </div>
-
-      <input type="image" class="add-button" src="images/add-button.svg" alt="add button" />
+      <button type="button" class="add-button"></button>
     </section>
 
     <section class="cards">
       <article class="card">
         <img src="images/photo1.jpg" alt="valley" class="card__image">
-        <p class="card__caption">Yosemite Valley</p>
-        <i onclick="likeToggle(0)" class="like-button like-button_disabled"></i>
+        <div class="card__caption">
+          <h2 class="card__text">Yosemite Valley</h2>
+          <button type="button" class="like-button like-button_disabled"></button>
+        </div>
       </article>
       <article class="card">
         <img src="images/photo2.jpg" alt="lake" class="card__image">
-        <p class="card__caption">Lake Louise</p>
-        <i onclick="likeToggle(1)" class="like-button like-button_disabled"></i>
+        <div class="card__caption">
+          <h2 class="card__text">Lake Louise</h2>
+          <button type="button" class="like-button like-button_disabled"></button>
+        </div>
       </article>
       <article class="card">
         <img src="images/photo3.jpg" alt="mountains" class="card__image">
-        <p class="card__caption">Bald Mountains</p>
-        <i onclick="likeToggle(2)" class="like-button like-button_disabled"></i>
+        <div class="card__caption">
+          <h2 class="card__text">Bald Mountains</h2>
+          <button type="button" class="like-button like-button_disabled"></button>
+        </div>
       </article>
       <article class="card">
         <img src="images/photo4.jpg" alt="night sky" class="card__image">
-        <p class="card__caption">Latemar</p>
-        <i onclick="likeToggle(3)" class="like-button like-button_disabled"></i>
+        <div class="card__caption">
+          <h2 class="card__text">Latemar</h2>
+          <button type="button" class="like-button like-button_disabled"></button>
+        </div>
       </article>
       <article class="card">
         <img src="images/photo5.jpg" alt="park" class="card__image">
-        <p class="card__caption">Vanoise National Park</p>
-        <i onclick="likeToggle(4)" class="like-button like-button_disabled"></i>
+        <div class="card__caption">
+          <h2 class="card__text">Vanoise National Park</h2>
+          <button type="button" class="like-button like-button_disabled"></button>
+        </div>
       </article>
       <article class="card">
         <img src="images/photo6.jpg" alt="lake" class="card__image">
-        <p class="card__caption">Lago di Braies</p>
-        <i onclick="likeToggle(5)" class="like-button like-button_disabled"></i>
+        <div class="card__caption">
+          <h2 class="card__text">Lago di Braies</h2>
+          <button type="button" class="like-button like-button_disabled"></button>
+        </div>
       </article>
 
 
@@ -77,13 +86,14 @@
   </footer>
   <div class="modal">
     <div class="modal__container">
-      <form action="" class="form">
+      <form class="form">
         <h2 class="form__heading">Edit profile</h2>
-        <input type="text" class="form__name">
-        <input type="text" class="form__description">
-        <button class="save-button" type="button">Save</button>
+        <input type="text" class="form__input form__input_name">
+        <input type="text" class="form__input form__input_description">
+        <button type="button" class="save-button" >Save</button>
       </form>
-      <input type="image" class="close-button" src="images/close-button.svg" alt="close button" />
+      <button type="button" class="close-button"></button>
+
     </div>
   </div>
   <script src="script/script.js"></script>

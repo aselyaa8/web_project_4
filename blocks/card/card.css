@@ -1,13 +1,18 @@
 @import url(__caption/card__caption.css);
+@import url(__text/card__text.css);
 @import url(__image/card__image.css);
 
 .card {
   width: 282px;
-  height: 361px;
+  padding-bottom: 31px;
   background: #FFFFFF;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  flex-wrap: wrap;
 }

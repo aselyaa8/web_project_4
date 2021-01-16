@@ -1,5 +1,7 @@
-.form__description {
-  margin-top: 29.74px;
+@import url(_name/form__input_name.css);
+@import url(_description/form__input_description.css);
+
+.form__input {
   border-width: 0px 0px 1px;
   -o-border-image: initial;
      border-image: initial;

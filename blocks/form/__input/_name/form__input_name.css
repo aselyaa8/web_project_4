@@ -1,0 +1,10 @@
+.form__input_name {
+  margin-top: 54px;
+  color: #000000;
+}
+
+@media screen and (max-width: 800px) {
+  .form__input_name {
+    margin-top: 75px;
+  }
+}

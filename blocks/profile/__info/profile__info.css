@@ -1,23 +1,28 @@
 .profile__info {
   max-width: 415px;
-  height: 77px;
-  display: -webkit-box;
+  /* display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end; */
+  display: grid;
+  grid-template-rows: repeat(2, auto);
+  grid-template-columns: 373px 24px;
+  grid-gap: 18px;
+  align-items: end;
+
 }
 
 @media screen and (max-width: 800px) {
   .profile__info {
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
   }
 }

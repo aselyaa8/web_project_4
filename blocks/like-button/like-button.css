@@ -1,9 +1,10 @@
 .like-button {
   width: 20.76px;
   height: 18.13px;
-  position: absolute;
-  bottom: 29.87px;
-  right: 22.24px;
+  
+  background-size: contain;
+  background-repeat: no-repeat;
+  border: 0;
 }
 .like-button:hover {
   opacity: 0.5;
