@@ -8,6 +8,8 @@
   background-position: center;
   align-self: center;
   margin: 0;
+  cursor: pointer;
+  transition: opacity 0.3s ease-in;
 }
 
 @media screen and (max-width: 800px) {

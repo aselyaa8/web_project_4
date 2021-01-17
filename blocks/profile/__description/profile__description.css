@@ -17,9 +17,5 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    -o-text-overflow: ellipsis;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
   }
 }

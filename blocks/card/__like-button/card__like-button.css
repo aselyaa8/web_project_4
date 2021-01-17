@@ -4,10 +4,11 @@
 .card__like-button {
   width: 20.76px;
   height: 18.13px;
-
   background-size: contain;
   background-repeat: no-repeat;
   border: 0;
+  transition: opacity 0.3s ease-in;
+  cursor: pointer;
 }
 .card__like-button:hover {
   opacity: 0.5;

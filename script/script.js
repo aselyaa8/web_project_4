@@ -1,12 +1,12 @@
 let edit = document.querySelector(".profile__edit-button");
 let closeButton = document.querySelector(".modal__close-button");
 let modalToggle = document.querySelector(".modal");
-let saveButton = document.querySelector(".form__save-button");
+let saveButton = document.querySelector(".form");
 // let likeButton = document.querySelectorAll(".like-button");
 let profileName = document.querySelector(".profile__name");
-let formName = document.querySelector(".form__input_name");
+let formName = document.querySelector(".form__input_type_name");
 let profileInfo = document.querySelector(".profile__description");
-let formInfo = document.querySelector(".form__input_description");
+let formInfo = document.querySelector(".form__input_type_description");
 
 
 function openEdit() {
@@ -19,7 +19,8 @@ function closeEdit() {
   modalToggle.classList.remove('modal_opened');
 }
 
-function saveForm() {
+function saveForm(evt) {
+  evt.preventDefault();
   profileName.textContent = formName.value;
   profileInfo.textContent = formInfo.value;
   closeEdit();
@@ -38,5 +39,5 @@ function saveForm() {
 
 edit.addEventListener('click', openEdit);
 closeButton.addEventListener('click', closeEdit);
-saveButton.addEventListener('click', saveForm);
+saveButton.addEventListener('submit', saveForm);
 
