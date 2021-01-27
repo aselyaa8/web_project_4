@@ -32,50 +32,6 @@
     </section>
 
     <section class="cards">
-      <article class="card">
-        <img src="images/photo1.jpg" alt="valley" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__text">Yosemite Valley</h2>
-          <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="images/photo2.jpg" alt="lake" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__text">Lake Louise</h2>
-          <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="images/photo3.jpg" alt="mountains" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__text">Bald Mountains</h2>
-          <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="images/photo4.jpg" alt="night sky" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__text">Latemar</h2>
-          <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="images/photo5.jpg" alt="park" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__text">Vanoise National Park</h2>
-          <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
-        </div>
-      </article>
-      <article class="card">
-        <img src="images/photo6.jpg" alt="lake" class="card__image">
-        <div class="card__caption">
-          <h2 class="card__text">Lago di Braies</h2>
-          <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
-        </div>
-      </article>
-
-
 
     </section>
 
@@ -95,7 +51,30 @@
       <button aria-label="Close" type="button" class="modal__close-button"></button>
 
     </div>
+    <div class="modal">
+      <div class="modal__container">
+        <form class="form" name="add-profile">
+          <h2 class="form__heading">New place</h2>
+          <input type="text" name="edit-profile-name" class="form__input form__input_type_name">
+          <input type="text" name="edit-profile-description" class="form__input form__input_type_description">
+          <button aria-label="Submit" type="submit" class="form__save-button">Save</button>
+        </form>
+        <button aria-label="Close" type="button" class="modal__close-button"></button>
+
+      </div>
   </div>
+
+  <template class="card-template">
+    <div class="card">
+    <img  alt="lake" class="card__image">
+    <div class="card__caption">
+      <h2 class="card__text">Lago di Braies</h2>
+      <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
+    </div>
+    </div>
+  </template>
+
+
   <script src="script/script.js"></script>
 </body>
 
