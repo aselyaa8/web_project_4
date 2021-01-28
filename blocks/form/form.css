@@ -34,5 +34,14 @@
   }
 }
 
+@media screen and (max-width: 800px) {
+  .form-add {
+    width: 200px;
+    padding-left: 22px;
+    padding-right: 22px;
+    padding-bottom: 25px;
+  }
+}
+
 
 

@@ -53,26 +53,37 @@
     </div>
   </div>
 
-    <div class="modal modal-add">
-      <div class="modal__container">
-        <form class="form" name="add-card">
-          <h2 class="form__heading">New place</h2>
-          <input type="text" name="add-card__title" class="form__input form__input_type_name" placeholder="Title">
-          <input type="text" name="add-card__link" class="form__input form__input_type_description" placeholder="Image link">
-          <button aria-label="Submit" type="submit" class="form__save-button">Create</button>
-        </form>
-        <button aria-label="Close" type="button" class="modal__close-button"></button>
+  <div class="modal modal-add">
+    <div class="modal__container">
+      <form class="form form-add" name="add-card">
+        <h2 class="form__heading">New place</h2>
+        <input type="text" name="add-card__title" class="form__input form__input_type_title" placeholder="Title">
+        <input type="text" name="add-card__link" class="form__input form__input_type_link" placeholder="Image link">
+        <button aria-label="Submit" type="submit" class="form__save-button">Create</button>
+      </form>
+      <button aria-label="Close" type="button" class="modal__close-button"></button>
 
-      </div>
+    </div>
+  </div>
+
+  <div class="modal modal-figure">
+    <div class="modal__container">
+      <figure class="modal__figure">
+        <img src="#" alt="image" class="modal__image">
+        <figcaption class="modal__image-caption"></figcaption>
+      </figure>
+      <button aria-label="Close" type="button" class="modal__close-button"></button>
+    </div>
   </div>
 
   <template class="card-template">
     <div class="card">
-    <img  alt="lake" class="card__image">
-    <div class="card__caption">
-      <h2 class="card__text">Lago di Braies</h2>
-      <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
-    </div>
+      <button aria-label="delete" type="button" class="card__delete-button"></button>
+      <img src="#" alt="image" class="card__image">
+      <div class="card__caption">
+        <h2 class="card__text">Lago di Braies</h2>
+        <button aria-label="Like" type="button" class="card__like-button card__like-button_disabled"></button>
+      </div>
     </div>
   </template>
 

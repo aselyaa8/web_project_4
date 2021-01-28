@@ -2,7 +2,7 @@
 @import url(__text/card__text.css);
 @import url(__image/card__image.css);
 @import url(__like-button/card__like-button.css);
-
+@import url(__delete-button/card__delete-button.css);
 .card {
   width: 282px;
   padding-bottom: 31px;
