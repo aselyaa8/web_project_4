@@ -36,9 +36,14 @@ const formName = modalEdit.querySelector(".form__input_type_name");
 const formInfo = modalEdit.querySelector(".form__input_type_description");
 const formTitle = modalAdd.querySelector(".form__input_type_title");
 const formLink = modalAdd.querySelector(".form__input_type_link");
+const formEdit = modalEdit.querySelector(".form");
+const formAdd = modalAdd.querySelector(".form");
+const modalImage = document.querySelector(".modal__image");
+const modalCaption = document.querySelector(".modal__image-caption");
+const cardsSection = document.querySelector(".cards");
 
 initialCards.forEach((object) => {
-  addCard(object);
+addCard(object);
 })
 
 function toggleModal(modal) {
@@ -49,22 +54,18 @@ function editModal() {
   toggleModal(modalEdit);
   formName.value = profileName.textContent;
   formInfo.value = profileInfo.textContent;
-  const formEdit = modalEdit.querySelector(".form");
-  formEdit.addEventListener('submit', saveEditModal);
 }
 
 function addModal() {
   toggleModal(modalAdd);
-  const formAdd = modalAdd.querySelector(".form");
-  formAdd.addEventListener('submit', saveAddModal);
 }
 
-function openFigureModal(evt) {
+function openFigureModal(object) {
+  console.log(object);
   toggleModal(modalFigure);
-  const modalImage = document.querySelector(".modal__image");
-  const modalCaption = document.querySelector(".modal__image-caption");
-  modalImage.src = evt.target.src;
-  modalCaption.textContent = evt.target.nextElementSibling.textContent;
+  modalImage.src = object.link;
+  modalImage.alt = object.name;
+  modalCaption.textContent = object.name;
 }
 
 function saveEditModal(evt) {
@@ -80,27 +81,28 @@ function saveAddModal(evt) {
   toggleModal(modalAdd);
 }
 
-function addCard(object) {
+function createCard(object) {
   const cardTemplate = document.querySelector(".card-template").content;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-  cardElement.querySelector(".card__image").src = object.link;
-  cardElement.querySelector(".card__text").textContent = object.name;
-  const cardsSection = document.querySelector(".cards");
-  cardsSection.prepend(cardElement);
-  const deleteCardButton = document.querySelector(".card__delete-button");
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardText = cardElement.querySelector(".card__text")
+  cardText.textContent = object.name;
+  cardImage.src = object.link;
+  cardImage.alt = object.name;
+  cardImage.addEventListener("click", () => {
+    openFigureModal(object);
+  });
+  const deleteCardButton = cardElement.querySelector(".card__delete-button");
   deleteCardButton.addEventListener("click", () => { cardElement.remove() });
-  cardElement.querySelector(".card__image").addEventListener("click", openFigureModal);
   cardElement.querySelector(".card__like-button").addEventListener("click", function (evt) {
-
-    if (evt.target.classList.contains("card__like-button_active")) {
-      evt.target.classList.remove("card__like-button_active");
-      evt.target.classList.add("card__like-button_disabled");
-    }
-    if (evt.target.classList.contains("card__like-button_disabled")) {
-      evt.target.classList.remove("card__like-button_disabled");
-      evt.target.classList.add("card__like-button_active");
-    }
+    evt.target.classList.toggle('card__like-button_active');
   })
+  return cardElement;
+}
+
+function addCard(object){
+  const cardElement = createCard(object);
+  cardsSection.prepend(cardElement);
 }
 
 
@@ -112,8 +114,8 @@ const closeAddModal = modalAdd.querySelector(".modal__close-button");
 closeAddModal.addEventListener("click", () => { toggleModal(modalAdd) })
 const closeFigureModal = modalFigure.querySelector(".modal__close-button");
 closeFigureModal.addEventListener("click", () => { toggleModal(modalFigure) })
-
-
+formEdit.addEventListener('submit', saveEditModal);
+formAdd.addEventListener('submit', saveAddModal);
 
 
 
