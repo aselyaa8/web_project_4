@@ -46,20 +46,19 @@ initialCards.forEach((object) => {
   addCard(object);
 })
 
+function closeByEsc(evt){
+  if(evt.key==="Escape"){
+    const openedModal = document.querySelector(".modal_opened")
+    closeModal(openedModal);
+  }
+}
+
 function openModal(modal){
   modal.classList.add("modal_opened");
-  document.addEventListener("keydown", function(evt){
-    if(evt.key==="Escape"){
-      closeModal(modal);
-    }
-  })
+  document.addEventListener("keydown", closeByEsc);
 }
 function closeModal(modal){
-  document.removeEventListener("keydown", function(evt){
-    if(evt.key==="Escape"){
-      closeModal(modal);
-    }
-  })
+  document.removeEventListener("keydown", closeByEsc);
   modal.classList.remove("modal_opened");
 }
 
@@ -117,42 +116,21 @@ function addCard(object){
   cardsSection.prepend(cardElement);
 }
 
-
 editButton.addEventListener('click', editModal);
 addButton.addEventListener("click", addModal);
-const closeEditModal = modalEdit.querySelector(".modal__close-button");
-closeEditModal.addEventListener("click", () => { closeModal(modalEdit) })
-const closeAddModal = modalAdd.querySelector(".modal__close-button");
-closeAddModal.addEventListener("click", () => { closeModal(modalAdd) })
-const closeFigureModal = modalFigure.querySelector(".modal__close-button");
-closeFigureModal.addEventListener("click", () => { closeModal(modalFigure) })
 formEdit.addEventListener('submit', saveEditModal);
 formAdd.addEventListener('submit', saveAddModal);
 
-// document.addEventListener("keydown", function(evt){
-//   if(evt.key==="Escape"){
-//     closeModal(modalAdd);
-//     closeModal(modalEdit);
-//     closeModal(modalFigure);
-//   }
-// })
 
-modalEdit.addEventListener("click", (evt)=>{
-  console.log(evt.target.closest(".modal__container"));
-  if (evt.target.closest(".modal__container") === null) {
-    closeModal(modalEdit);
-  }
-})
-modalAdd.addEventListener("click", (evt)=>{
-  console.log(evt.target.closest(".modal__container"));
-  if (evt.target.closest(".modal__container") === null) {
-    closeModal(modalAdd);
-  }
-})
-modalFigure.addEventListener("click", (evt)=>{
-  console.log(evt.target.closest(".modal__container"));
-  if (evt.target.closest(".modal__container") === null) {
-    closeModal(modalFigure);
-  }
-})
+const modals = Array.from(document.querySelectorAll(".modal"));
 
+modals.forEach((modal) => {
+  modal.addEventListener("click", (evt)=>{
+    if (evt.target.closest(".modal__container") === null) {
+      closeModal(modal);
+    }
+    if(evt.target.closest(".modal__close-button")){
+      closeModal(modal);
+    }
+  })
+});
