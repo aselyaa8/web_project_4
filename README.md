@@ -9,6 +9,7 @@ https://aselyaa8.github.io/web_project_4/
 * Images
 * JavaScript
 * Responsive Layout
+* Form validation;
 
 **Figma**
 
@@ -27,5 +28,6 @@ JS was used to make buttons such as:
 - like(for photos)
 - edit(user's name and description can be changed)
 - close(for closing popup window)
-
+- form validation added
+- close on Esc key and on Overlay clicking
 

@@ -43,26 +43,38 @@ const modalCaption = document.querySelector(".modal__image-caption");
 const cardsSection = document.querySelector(".cards");
 
 initialCards.forEach((object) => {
-addCard(object);
+  addCard(object);
 })
 
-function toggleModal(modal) {
-  modal.classList.toggle("modal_opened");
+function openModal(modal){
+  modal.classList.add("modal_opened");
+  document.addEventListener("keydown", function(evt){
+    if(evt.key==="Escape"){
+      closeModal(modal);
+    }
+  })
+}
+function closeModal(modal){
+  document.removeEventListener("keydown", function(evt){
+    if(evt.key==="Escape"){
+      closeModal(modal);
+    }
+  })
+  modal.classList.remove("modal_opened");
 }
 
 function editModal() {
-  toggleModal(modalEdit);
+  openModal(modalEdit);
   formName.value = profileName.textContent;
   formInfo.value = profileInfo.textContent;
 }
 
 function addModal() {
-  toggleModal(modalAdd);
+  openModal(modalAdd);
 }
 
 function openFigureModal(object) {
-  console.log(object);
-  toggleModal(modalFigure);
+  openModal(modalFigure);
   modalImage.src = object.link;
   modalImage.alt = object.name;
   modalCaption.textContent = object.name;
@@ -72,13 +84,13 @@ function saveEditModal(evt) {
   evt.preventDefault();
   profileName.textContent = formName.value;
   profileInfo.textContent = formInfo.value;
-  toggleModal(modalEdit);
+  closeModal(modalEdit);
 }
 
 function saveAddModal(evt) {
   evt.preventDefault();
   addCard({ name: formTitle.value, link: formLink.value });
-  toggleModal(modalAdd);
+  closeModal(modalAdd);
 }
 
 function createCard(object) {
@@ -109,18 +121,38 @@ function addCard(object){
 editButton.addEventListener('click', editModal);
 addButton.addEventListener("click", addModal);
 const closeEditModal = modalEdit.querySelector(".modal__close-button");
-closeEditModal.addEventListener("click", () => { toggleModal(modalEdit) })
+closeEditModal.addEventListener("click", () => { closeModal(modalEdit) })
 const closeAddModal = modalAdd.querySelector(".modal__close-button");
-closeAddModal.addEventListener("click", () => { toggleModal(modalAdd) })
+closeAddModal.addEventListener("click", () => { closeModal(modalAdd) })
 const closeFigureModal = modalFigure.querySelector(".modal__close-button");
-closeFigureModal.addEventListener("click", () => { toggleModal(modalFigure) })
+closeFigureModal.addEventListener("click", () => { closeModal(modalFigure) })
 formEdit.addEventListener('submit', saveEditModal);
 formAdd.addEventListener('submit', saveAddModal);
 
+// document.addEventListener("keydown", function(evt){
+//   if(evt.key==="Escape"){
+//     closeModal(modalAdd);
+//     closeModal(modalEdit);
+//     closeModal(modalFigure);
+//   }
+// })
 
-
-
-
-
-
+modalEdit.addEventListener("click", (evt)=>{
+  console.log(evt.target.closest(".modal__container"));
+  if (evt.target.closest(".modal__container") === null) {
+    closeModal(modalEdit);
+  }
+})
+modalAdd.addEventListener("click", (evt)=>{
+  console.log(evt.target.closest(".modal__container"));
+  if (evt.target.closest(".modal__container") === null) {
+    closeModal(modalAdd);
+  }
+})
+modalFigure.addEventListener("click", (evt)=>{
+  console.log(evt.target.closest(".modal__container"));
+  if (evt.target.closest(".modal__container") === null) {
+    closeModal(modalFigure);
+  }
+})
 

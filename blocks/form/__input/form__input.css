@@ -1,3 +1,4 @@
+@import url(_type_error/form__input_type_error.css);
 
 .form__input {
   border-width: 0px 0px 1px;
@@ -27,3 +28,9 @@
     margin-top: 75px;
   }
 }
+
+.form__input:invalid {
+  border-bottom: 1px solid #FF0000; /* the red border is for invalid input */
+}
+
+
