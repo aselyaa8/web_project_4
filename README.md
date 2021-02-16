@@ -1,15 +1,16 @@
-# Project 4: Around The U.S.
-Author: Assel Kadyrkul 2020
+# Project 7: Around The U.S.
+Author: Assel Kadyrkul 2021
 https://aselyaa8.github.io/web_project_4/
 
 ### Overview
-
 
 * Figma
 * Images
 * JavaScript
 * Responsive Layout
 * Form validation;
+* object-oriented Programming
+* Modular JS
 
 **Figma**
 
@@ -30,4 +31,5 @@ JS was used to make buttons such as:
 - close(for closing popup window)
 - form validation added
 - close on Esc key and on Overlay clicking
+- code organization using classes/OOP, export and import of modules
 
