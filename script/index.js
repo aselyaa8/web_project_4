@@ -1,6 +1,8 @@
 import FormValidator from "./FormValidator.js";
-import Card from "./Card.js"
-import { openFigureModal, openModal, closeByEsc, closeModal } from "./Card.js"
+import Card from "./Card.js";
+import {openModal, closeByEsc, closeModal} from "./utils.js";
+import { openFigureModal} from "./Card.js"
+import initialCards from "./initialCards.js";
 
 const defaultSettings = {
   formSelector: ".form",
@@ -18,33 +20,8 @@ const modalEditValidator = new FormValidator(defaultSettings, formEdit);
 modalAddValidator.enableValidation();
 modalEditValidator.enableValidation();
 
-const initialCards = [
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-  }
 
-];
+
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button")
 
@@ -61,38 +38,11 @@ initialCards.forEach((object) => {
   addCard(object);
 })
 
-// function closeByEsc(evt){
-//   if(evt.key==="Escape"){
-//     const openedModal = document.querySelector(".modal_opened")
-//     closeModal(openedModal);
-//   }
-// }
-
-// function openModal(modal){
-//   modal.classList.add("modal_opened");
-//   document.addEventListener("keydown", closeByEsc);
-// }
-// function closeModal(modal){
-//   document.removeEventListener("keydown", closeByEsc);
-//   modal.classList.remove("modal_opened");
-// }
-
 function editModal() {
   openModal(modalEdit);
   formName.value = profileName.textContent;
   formInfo.value = profileInfo.textContent;
 }
-
-function addModal() {
-  openModal(modalAdd);
-}
-
-// function openFigureModal(object) {
-//   openModal(modalFigure);
-//   modalImage.src = object.link;
-//   modalImage.alt = object.name;
-//   modalCaption.textContent = object.name;
-// }
 
 function saveEditModal(evt) {
   evt.preventDefault();
@@ -107,33 +57,13 @@ function saveAddModal(evt) {
   closeModal(modalAdd);
 }
 
-// function createCard(object) {
-//   const cardTemplate = document.querySelector(".card-template").content;
-//   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-//   const cardImage = cardElement.querySelector(".card__image");
-//   const cardText = cardElement.querySelector(".card__text")
-//   cardText.textContent = object.name;
-//   cardImage.src = object.link;
-//   cardImage.alt = object.name;
-//   cardImage.addEventListener("click", () => {
-//     openFigureModal(object);
-//   });
-//   const deleteCardButton = cardElement.querySelector(".card__delete-button");
-//   deleteCardButton.addEventListener("click", () => { cardElement.remove() });
-//   cardElement.querySelector(".card__like-button").addEventListener("click", function (evt) {
-//     evt.target.classList.toggle('card__like-button_active');
-//   })
-
-//   return cardElement;
-// }
-
 function addCard(object) {
   const card = new Card(object, '.card-template');
   cardsSection.prepend(card.createCard());
 }
 
 editButton.addEventListener('click', editModal);
-addButton.addEventListener("click", addModal);
+addButton.addEventListener("click", () => openModal(modalAdd));
 formEdit.addEventListener('submit', saveEditModal);
 formAdd.addEventListener('submit', saveAddModal);
 
