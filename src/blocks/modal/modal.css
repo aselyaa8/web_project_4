@@ -5,7 +5,6 @@
 @import url(__image-caption/modal__image-caption.css);
 
 .modal {
-  display: none;
   background: rgba(0, 0, 0, .5);
   font-family: 'Inter', Arial, sans-serif;
   position: fixed;
@@ -17,12 +16,11 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-
+  -ms-flex-align: center;
+  align-items: center;
   visibility: hidden;
   opacity: 0;
   transition: visibility 0.3s linear, opacity 0.3s linear;

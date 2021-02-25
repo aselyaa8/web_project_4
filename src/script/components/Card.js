@@ -1,26 +1,14 @@
-import {openModal, closeByEsc, closeModal} from "./utils.js";
-const modalFigure = document.querySelector(".modal-figure");
-const modalImage = document.querySelector(".modal__image");
-const modalCaption = document.querySelector(".modal__image-caption");
-
-const openFigureModal = (name, link) => {
-  openModal(modalFigure);
-  modalImage.src = link;
-  modalImage.alt = name;
-  modalCaption.textContent = name;
-}
-
-class Card {
-  constructor(object, templateSelector) {
+export default class Card {
+  constructor(object, templateSelector, handleCardClick) {
     this._name = object.name;
     this._link = object.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
-
   _isOpenedCard() {
     const cardImage = this._card.querySelector(".card__image");
     cardImage.addEventListener("click", () => {
-      openFigureModal(this._name, this._link);
+      this._handleCardClick();
     });
   }
   _isLiked() {
@@ -33,7 +21,6 @@ class Card {
     const deleteCardButton = this._card.querySelector(".card__delete-button");
     deleteCardButton.addEventListener("click", () => { this._card.remove() });
   }
-
   _setEventListeners() {
     this._isOpenedCard();
     this._isDeleted();
@@ -50,10 +37,8 @@ class Card {
     cardText.textContent = this._name;
     cardImage.src = this._link;
     cardImage.alt = this._name;
-
     this._setEventListeners();
     return this._card;
   }
 }
-export default Card;
-export { openFigureModal};
+

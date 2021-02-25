@@ -23,7 +23,14 @@ const initialCards = [
     name: "Yosemite Valley",
     link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
   }
-
 ];
 
-export default initialCards;
+const defaultSettings = {
+  formSelector: ".form",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__save-button",
+  inactiveButtonClass: "form__save-button_disabled"
+}
+
+export {initialCards, defaultSettings} ;
+
