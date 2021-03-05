@@ -1,20 +1,53 @@
 import "./index.css";
 import FormValidator from "../script/components/FormValidator.js";
 import Card from "../script/components/Card.js";
-import { initialCards, defaultSettings } from "../script/utils/constants";
+import { defaultSettings } from "../script/utils/constants";
 import Section from "../script/components/Section.js";
 import ModalWithImage from "../script/components/ModalWithImage.js";
 import ModalWithForm from "../script/components/ModalWithForm.js";
 import UserInfo from "../script/components/UserInfo.js";
+import Api from "../script/components/Api.js";
 
-const cardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const cardElement = getNewCardElement(item);
-    cardList.addItem(cardElement);
+const api = new Api({
+  baseUrl: "https://around.nomoreparties.co/v1/group-9",
+  headers: {
+    authorization: "1700817e-a1e9-4638-acf5-4cd690372eaf",
+    "Content-Type": "application/json"
   }
-}, ".cards");
-cardList.render();
+});
+
+api.getUserInfo().then((object)=>{
+  placeUserInfoToDom(object.name, object.about, object.avatar)
+});
+// api.postCard(initialCards[6]);
+// console.log(api.getInitialCards());
+
+
+
+function placeUserInfoToDom(name, info, avatar){
+  const profileNameElement = document.querySelector(".profile__name");
+  const profileInfoElement = document.querySelector(".profile__description");
+  const profileAvatarElement = document.querySelector(".profile__avatar");
+  profileNameElement.textContent = name;
+  profileInfoElement.textContent = info;
+  profileAvatarElement.src = avatar
+}
+
+
+api.getInitialCards().then((data)=>{
+  console.log(data);
+  const cardList = new Section({
+    items: data,
+    renderer: (item) => {
+      const cardElement = getNewCardElement(item);
+      cardList.addItem(cardElement);
+    }
+  }, ".cards");
+  cardList.render();
+
+});
+
+
 
 const formEdit = document.querySelector(".modal-edit").querySelector(".form");
 const formAdd = document.querySelector(".modal-add").querySelector(".form");
@@ -42,8 +75,9 @@ editButton.addEventListener('click', () => {
 });
 
 const modalAdd = new ModalWithForm(".modal-add", (item) => {
-  const cardElement = getNewCardElement(item);
-  cardList.prepend(cardElement);
+  api.postCard(item);
+  // const cardElement = getNewCardElement(item);
+  // cardList.prepend(cardElement);
 });
 modalAdd.setEventListeners();
 
