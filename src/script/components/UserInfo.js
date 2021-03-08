@@ -6,14 +6,14 @@ export default class UserInfo {
     this._profileInfo = profileInfo;
   }
   getUserInfo() {
-    const formData = { name: this._profileName, info: this._profileInfo };
+    const formData = { name: this._profileName, about: this._profileInfo };
     return formData;
   }
   setUserInfo(data) {
     this._profileNameElement.textContent = data.name;
-    this._profileInfoElement.textContent = data.info;
+    this._profileInfoElement.textContent = data.about;
     this._profileName = data.name;
-    this._profileInfo = data.info;
+    this._profileInfo = data.about;
   }
 }
 

@@ -1,4 +1,6 @@
 @import url(__avatar/profile__avatar.css);
+@import url(__avatar-edit-container/profile__avatar-edit-container.css);
+@import url(__avatar-container/profile__avatar-container.css);
 @import url(__description/profile__description.css);
 @import url(__info/profile__info.css);
 @import url(__name/profile__name.css);
@@ -14,8 +16,8 @@
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   font-family: 'Inter', Arial, sans-serif;
 }
 
@@ -26,13 +28,16 @@
     margin-right: auto;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
     max-width: 282px;
     min-height: 286px;
     position: relative;
   }
 }
-.profile__avatar-container {
-  position: relative;
-}
+
+
+
+
+
+

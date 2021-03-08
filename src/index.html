@@ -21,8 +21,10 @@
     <section class="profile">
       <div class="profile__avatar-container">
         <img src="#" alt="Avatar photo" class="profile__avatar">
-        <!-- <div class="profile__avatar-edit-container"></div> -->
-        <button aria-label="Edit" type="button" class="profile__avatar-edit"></button>
+        <div class="profile__avatar-edit-container">
+          <button aria-label="Edit" type="button" class="profile__avatar-edit"></button>
+        </div>
+
       </div>
 
       <div class="profile__info">
@@ -50,10 +52,23 @@
         <input id="name-input" type="text" name="name" class="form__input form__input_type_name" minlength="2"
           maxlength="40" required>
         <span id="name-input-error" class="form__input-error"></span>
-        <input id="description-input" type="text" name="info" class="form__input form__input_type_description"
+        <input id="description-input" type="text" name="about" class="form__input form__input_type_description"
           minlength="2" maxlength="200" required>
         <span id="description-input-error" class="form__input-error"></span>
         <button aria-label="Submit" type="submit" class="form__save-button">Save</button>
+      </form>
+      <button aria-label="Close" type="button" class="modal__close-button"></button>
+    </div>
+  </div>
+
+  <div class="modal modal-avatar-edit">
+    <div class="modal__container">
+      <form class="form form-avatar-edit" name="avatar-edit">
+        <h2 class="form__heading">Change profile picture</h2>
+        <input id="url-input" type="url" name="avatar" class="form__input form__input_type_link" placeholder="url"
+          required>
+        <span id="url-input-error" class="form__input-error"></span>
+        <button aria-label="Submit" type="submit" class="form__save-button form__save-button_disabled">Save</button>
       </form>
       <button aria-label="Close" type="button" class="modal__close-button"></button>
     </div>
@@ -75,7 +90,15 @@
 
     </div>
   </div>
-
+  <div class="modal modal-delete-confirm">
+    <div class="modal__container">
+      <form class="form form-avatar-edit" name="avatar-edit">
+        <h2 class="form__heading">Are you sure?</h2>
+        <button aria-label="Submit" type="button" class="form__save-button">Yes</button>
+      </form>
+      <button aria-label="Close" type="button" class="modal__close-button"></button>
+    </div>
+  </div>
   <div class="modal modal-figure">
     <div class="modal__container">
       <figure class="modal__figure">

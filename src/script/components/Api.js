@@ -12,7 +12,7 @@ export default class Api {
       headers: this.headers
     }).then((res)=>{
       if(res.ok){
-        return res.json()
+        return res.json();
       }
       return Promise.reject(`Error: ${res.status}`);
     }).catch((err)=>{
@@ -20,6 +20,41 @@ export default class Api {
     })
 
   }
+  updateUserInfo({name, about}){
+    console.log(name, about);
+    return fetch(this.baseUrl + "/users/me", {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        name,
+        about
+       })
+    }).then((res)=>{
+      if(res.ok){
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+  updateUserAvatar(avatar){
+    return fetch(this.baseUrl + "/users/me/avatar", {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar
+       })
+    }).then((res)=>{
+      if(res.ok){
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+
   getInitialCards() {
     return fetch(this.baseUrl + "/cards", {
       method: "GET",
@@ -51,7 +86,7 @@ export default class Api {
     })
   }
   deleteCard(cardId){
-    return fetch(this.baseUrl + "/cards"+ cardId, {
+    return fetch(this.baseUrl + "/cards/"+ cardId, {
       method: "DELETE",
       headers: this.headers
     }).then((res)=>{
@@ -63,7 +98,7 @@ export default class Api {
       console.log(err);
     })
   }
-  
+
 
   // other methods for working with the API
 }
