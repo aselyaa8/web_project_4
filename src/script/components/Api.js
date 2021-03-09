@@ -68,6 +68,9 @@ export default class Api {
       console.log(err);
     })
   }
+  getAppInfo(){
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  }
   postCard(card){
     return fetch(this.baseUrl + "/cards", {
       method: "POST",

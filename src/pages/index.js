@@ -16,19 +16,6 @@ const api = new Api({
   }
 });
 
-let myId;
-api.getUserInfo().then((object) => {
-  console.log(object);
-  console.log("userInoID"+object._id);
-  placeUserInfoToDom(object.name, object.about, object.avatar);
-  let myId = object._id;
-});
-
-// api.postCard(initialCards[6]);
-// console.log(api.getInitialCards());
-
-
-
 function placeUserInfoToDom(name, about, avatar) {
   const profileNameElement = document.querySelector(".profile__name");
   const profileInfoElement = document.querySelector(".profile__description");
@@ -38,21 +25,23 @@ function placeUserInfoToDom(name, about, avatar) {
   profileAvatarElement.src = avatar
 }
 
-
-api.getInitialCards().then((data) => {
-  console.log(data);
+api.getAppInfo().then(([initialCards, userInfo]) => {
+  const myId = userInfo._id;
   const cardList = new Section({
-    items: data,
+    items: initialCards,
     renderer: (item) => {
-      const cardElement = getNewCardElement(item);
+      let cardElement;
+      if (myId === item.owner._id) {
+        cardElement = getNewCardElement(item);
+      } else {
+        cardElement = getNewCardElementWithNoBin(item)
+      }
       cardList.addItem(cardElement);
     }
   }, ".cards");
   cardList.render();
-
-});
-
-
+  placeUserInfoToDom(userInfo.name, userInfo.about, userInfo.avatar);
+})
 
 const formEdit = document.querySelector(".modal-edit").querySelector(".form");
 const formAdd = document.querySelector(".modal-add").querySelector(".form");
@@ -88,11 +77,11 @@ editButton.addEventListener('click', () => {
 });
 
 const modalAdd = new ModalWithForm(".modal-add", (item) => {
-  api.postCard(item).then((data)=>{
+  api.postCard(item).then((data) => {
     console.log(data);
     const cardElement = getNewCardElement(data);
     const cardList = document.querySelector(".cards");
-  cardList.prepend(cardElement);
+    cardList.prepend(cardElement);
   });
 
 });
@@ -115,12 +104,20 @@ avatarEditButton.addEventListener("click", () => { modalAvatarEdit.open(); });
 const addButton = document.querySelector(".profile__add-button");
 addButton.addEventListener("click", () => { modalAdd.open(); });
 
+function getNewCardElementWithNoBin(item) {
+  const cardElement = getNewCardElement(item);
+  cardElement.querySelector(".card__delete-button").classList.add("card__delete-button_disabled")
+  return cardElement;
+}
+
 function getNewCardElement(item) {
   const card = new Card(item, ".card-template", () => {
     modalImage.open(item.name, item.link);
-  }, (item) => {
+  }, (id) => {
     console.log("blabla handleDelete card");
-    api.deleteCard(item._id);
+    api.deleteCard(id).then((res) => {
+      console.log(res);
+    });
   });
   return card.createCard();
 }

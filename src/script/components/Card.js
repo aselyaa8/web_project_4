@@ -18,7 +18,7 @@ export default class Card {
     this._handleDeleteClick = handleDeleteClick;
 
   }
-  
+
   _isOpenedCard() {
     const cardImage = this._card.querySelector(".card__image");
     cardImage.addEventListener("click", () => {
@@ -36,8 +36,8 @@ export default class Card {
   _isDeleted() {
     const deleteCardButton = this._card.querySelector(".card__delete-button");
     deleteCardButton.addEventListener("click", () => {
-      this._handleDeleteClick(this._id)
-      this._card.remove();
+      this._handleDeleteClick(this._id);
+
     });
   }
 
@@ -60,7 +60,7 @@ export default class Card {
     cardImage.src = this._link;
     cardImage.alt = this._name;
     // console.log(`1${this._myId}`)
-    console.log(`2${this._id}`)
+
     // if(this._myId != this._id){
     //   this._card.querySelector(".card__delete-button").classList.remove(".card__delete-button");
     // }
