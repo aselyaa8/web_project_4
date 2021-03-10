@@ -101,6 +101,32 @@ export default class Api {
       console.log(err);
     })
   }
+  addLike(cardId){
+    return fetch(this.baseUrl + "/cards/likes/" + cardId, {
+      method: "PUT",
+      headers: this.headers
+    }).then((res)=>{
+      if(res.ok){
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
+  removeLike(cardId){
+    return fetch(this.baseUrl + "/cards/likes/"+ cardId, {
+      method: "DELETE",
+      headers: this.headers
+    }).then((res)=>{
+      if(res.ok){
+        return res.json()
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    }).catch((err)=>{
+      console.log(err);
+    })
+  }
 
 
   // other methods for working with the API

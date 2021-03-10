@@ -1,22 +1,13 @@
-// import Api from "./Api.js";
-
-// const api = new Api({
-//   baseUrl: "https://around.nomoreparties.co/v1/group-9",
-//   headers: {
-//     authorization: "1700817e-a1e9-4638-acf5-4cd690372eaf",
-//     "Content-Type": "application/json"
-//   }
-// });
 
 export default class Card {
-  constructor(object, templateSelector, handleCardClick, handleDeleteClick) {
+  constructor(object, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
     this._name = object.name;
     this._link = object.link;
     this._id = object._id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteClick = handleDeleteClick;
-
+    this._handleLikeClick = handleLikeClick;
   }
 
   _isOpenedCard() {
@@ -28,16 +19,15 @@ export default class Card {
 
   _isLiked() {
     const likeCardButton = this._card.querySelector(".card__like-button");
-    likeCardButton.addEventListener("click", (evt) => {
-      evt.target.classList.toggle('card__like-button_active');
+    likeCardButton.addEventListener("click", () => {
+      this._handleLikeClick(this._id, this._card)
     })
   }
 
   _isDeleted() {
     const deleteCardButton = this._card.querySelector(".card__delete-button");
     deleteCardButton.addEventListener("click", () => {
-      this._handleDeleteClick(this._id);
-
+      this._handleDeleteClick(this._id, this._card);
     });
   }
 
@@ -59,11 +49,6 @@ export default class Card {
     cardText.textContent = this._name;
     cardImage.src = this._link;
     cardImage.alt = this._name;
-    // console.log(`1${this._myId}`)
-
-    // if(this._myId != this._id){
-    //   this._card.querySelector(".card__delete-button").classList.remove(".card__delete-button");
-    // }
     this._setEventListeners();
     return this._card;
   }

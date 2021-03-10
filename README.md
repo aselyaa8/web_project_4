@@ -11,6 +11,7 @@ https://aselyaa8.github.io/web_project_4/
 * Form validation;
 * object-oriented Programming
 * Modular JS
+* Working with API
 
 **Figma**
 
@@ -32,4 +33,13 @@ JS was used to make buttons such as:
 - form validation added
 - close on Esc key and on Overlay clicking
 - code organization using classes/OOP, export and import of modules
+- improve UX on forms submission to server
+- fetch method when working with API
 
+**API**
+
+- load last version layout
+- update userAvatar
+- update userInfo
+- create/delete card
+- add/remove/count likes
