@@ -1,19 +1,18 @@
 export default class UserInfo {
-  constructor(profileName, profileInfo) {
-    this._profileNameElement = document.querySelector(".profile__name");
-    this._profileInfoElement = document.querySelector(".profile__description");
+  constructor(profileName, profileInfo, profileAvatar) {
+
     this._profileName = profileName;
     this._profileInfo = profileInfo;
+    this._profileAvatar = profileAvatar;
   }
   getUserInfo() {
-    const formData = { name: this._profileName, about: this._profileInfo };
+    const formData = { name: this._profileName.textContent, about: this._profileInfo.textContent, avatar: this._profileAvatar.src};
     return formData;
   }
   setUserInfo(data) {
-    this._profileNameElement.textContent = data.name;
-    this._profileInfoElement.textContent = data.about;
-    this._profileName = data.name;
-    this._profileInfo = data.about;
+    this._profileName.textContent = data.name;
+    this._profileInfo.textContent = data.about;
+    this._profileAvatar.src = data.avatar;
   }
 }
 

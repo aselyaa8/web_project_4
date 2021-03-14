@@ -5,6 +5,7 @@ import { defaultSettings } from "../script/utils/constants";
 import Section from "../script/components/Section.js";
 import ModalWithImage from "../script/components/ModalWithImage.js";
 import ModalWithForm from "../script/components/ModalWithForm.js";
+import ModalDeleteConfirmation from "../script/components/ModalDeleteConfirmation.js";
 import UserInfo from "../script/components/UserInfo.js";
 import Api from "../script/components/Api.js";
 
@@ -16,18 +17,15 @@ const api = new Api({
   }
 });
 
-function placeUserInfoToDom(name, about, avatar) {
-  const profileNameElement = document.querySelector(".profile__name");
-  const profileInfoElement = document.querySelector(".profile__description");
-  const profileAvatarElement = document.querySelector(".profile__avatar");
-  profileNameElement.textContent = name;
-  profileInfoElement.textContent = about;
-  profileAvatarElement.src = avatar;
-}
+const profileName = document.querySelector(".profile__name");
+const profileInfo = document.querySelector(".profile__description");
+const profileAvatar = document.querySelector(".profile__avatar");
+const userInfo = new UserInfo(profileName, profileInfo, profileAvatar);
 
-api.getAppInfo().then(([initialCards, userInfo]) => {
-  const myId = userInfo._id;
-  const cardList = new Section({
+let cardList;
+api.getAppInfo().then(([initialCards, userData]) => {
+  const myId = userData._id;
+  cardList = new Section({
     items: initialCards,
     renderer: (item) => {
       //see bin only on my cards
@@ -49,7 +47,16 @@ api.getAppInfo().then(([initialCards, userInfo]) => {
     }
   }, ".cards");
   cardList.render();
-  placeUserInfoToDom(userInfo.name, userInfo.about, userInfo.avatar);
+  console.log(userData)
+  userInfo.setUserInfo(userData);
+})
+
+const modalConfirmDelete = new ModalDeleteConfirmation(".modal-delete-confirm", (id, card) => {
+  //handleformSubmit
+  api.deleteCard(id).then(() => {
+    card.remove();
+    modalConfirmDelete.close();
+  });
 })
 
 function getNewCardElement(item) {
@@ -57,15 +64,7 @@ function getNewCardElement(item) {
     modalImage.open(item.name, item.link);
   }, (id, card) => {
     //handleDeleteClick
-    const modalConfirmDelete = new ModalWithForm(".modal-delete-confirm", () => {
-      //handleformSubmit
-      api.deleteCard(id).then(() => {
-        card.remove();
-        modalConfirmDelete.close()
-      });
-    })
-    modalConfirmDelete.setEventListeners();
-    modalConfirmDelete.open();
+    modalConfirmDelete.open(id, card);
   }, (id, card) => {
     //handleLikeClick
     const likeButton = card.querySelector(".card__like-button");
@@ -109,16 +108,11 @@ modalAvatarEditValidator.enableValidation();
 const modalImage = new ModalWithImage(".modal-figure");
 modalImage.setEventListeners();
 
-const profileName = document.querySelector(".profile__name");
-const profileInfo = document.querySelector(".profile__description");
-const userInfo = new UserInfo(profileName.textContent, profileInfo.textContent);
-
 //update userInfo on server when submitting modal edit form
 const modalEdit = new ModalWithForm(".modal-edit", (inputValues, form) => {
-  userInfo.setUserInfo(inputValues);
   renderLoading(form, true);
   api.updateUserInfo(inputValues).then((res) => {
-    placeUserInfoToDom(res.name, res.about, res.avatar);
+    userInfo.setUserInfo(res);
     modalEdit.close()
   }).finally(() => {
     renderLoading(form, false)
@@ -154,7 +148,6 @@ function fillEditModal(userInfo) {
 const modalAdd = new ModalWithForm(".modal-add", (item) => {
   api.postCard(item).then((data) => {
     const cardElement = getNewCardElement(data);
-    const cardList = document.querySelector(".cards");
     cardList.prepend(cardElement);
     modalAdd.close()
   });
@@ -163,7 +156,6 @@ const modalAdd = new ModalWithForm(".modal-add", (item) => {
 modalAdd.setEventListeners();
 
 //updating avatar photo in server when submitting avatar edit form
-const profileAvatar = document.querySelector(".profile__avatar");
 const modalAvatarEdit = new ModalWithForm(".modal-avatar-edit", (item, form) => {
   renderLoading(form, true);
   api.updateUserAvatar(item.avatar).then((res) => {
