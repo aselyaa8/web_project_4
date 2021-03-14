@@ -1,6 +1,8 @@
 export default class Modal {
   constructor(modalSelector) {
+    console.log(modalSelector);
     this._modal = document.querySelector(modalSelector);
+
     this._handleEscClose = this._handleEscClose.bind(this);
   }
   open() {

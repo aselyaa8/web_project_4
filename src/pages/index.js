@@ -49,35 +49,51 @@ api.getAppInfo().then(([initialCards, userData]) => {
   cardList.render();
   console.log(userData)
   userInfo.setUserInfo(userData);
+}).catch((err)=>{
+  console.log(err);
 })
 
-const modalConfirmDelete = new ModalDeleteConfirmation(".modal-delete-confirm", (id, card) => {
-  //handleformSubmit
-  api.deleteCard(id).then(() => {
-    card.remove();
-    modalConfirmDelete.close();
-  });
+const modalConfirmDelete = new ModalDeleteConfirmation({
+  modalSelector: ".modal-delete-confirm",
+  handleFormSubmit: (id, card) => {
+    api.deleteCard(id).then(() => {
+      card.remove();
+      modalConfirmDelete.close();
+    }).catch((err)=>{
+      console.log(err);
+    });
+  }
 })
 
 function getNewCardElement(item) {
-  const card = new Card(item, ".card-template", () => {
-    modalImage.open(item.name, item.link);
-  }, (id, card) => {
-    //handleDeleteClick
-    modalConfirmDelete.open(id, card);
-  }, (id, card) => {
-    //handleLikeClick
-    const likeButton = card.querySelector(".card__like-button");
-    if (card.querySelector(".card__like-button").classList.contains("card__like-button_active")) {
-      api.removeLike(id).then((res) => {
-        likeButton.classList.remove('card__like-button_active');
-        likeCounter(res.likes.length, card);
-      })
-    } else {
-      api.addLike(id).then((res) => {
-        likeButton.classList.add('card__like-button_active');
-        likeCounter(res.likes.length, card);
-      })
+  const card = new Card({
+    object: item,
+    templateSelector: ".card-template",
+    handleCardClick: () => {
+      modalImage.open(item.name, item.link);
+    },
+    handleDeleteClick: (id, card) => {
+      //handleDeleteClick
+      modalConfirmDelete.open(id, card);
+    },
+    handleLikeClick: (id, card) => {
+      //handleLikeClick
+      const likeButton = card.querySelector(".card__like-button");
+      if (card.querySelector(".card__like-button").classList.contains("card__like-button_active")) {
+        api.removeLike(id).then((res) => {
+          likeButton.classList.remove('card__like-button_active');
+          likeCounter(res.likes.length, card);
+        }).catch((err)=>{
+          console.log(err);
+        })
+      } else {
+        api.addLike(id).then((res) => {
+          likeButton.classList.add('card__like-button_active');
+          likeCounter(res.likes.length, card);
+        }).catch((err)=>{
+          console.log(err);
+        })
+      }
     }
   });
   return card.createCard();
@@ -105,18 +121,25 @@ modalEditValidator.enableValidation();
 modalAvatarEditValidator.enableValidation();
 
 //modalImage with caption on click
-const modalImage = new ModalWithImage(".modal-figure");
+const modalImage = new ModalWithImage({
+  modalSelector: ".modal-figure"
+});
 modalImage.setEventListeners();
 
 //update userInfo on server when submitting modal edit form
-const modalEdit = new ModalWithForm(".modal-edit", (inputValues, form) => {
-  renderLoading(form, true);
-  api.updateUserInfo(inputValues).then((res) => {
-    userInfo.setUserInfo(res);
-    modalEdit.close()
-  }).finally(() => {
-    renderLoading(form, false)
-  });
+const modalEdit = new ModalWithForm({
+  modalSelector: ".modal-edit",
+  handleFormSubmit: (inputValues, form) => {
+    renderLoading(form, true);
+    api.updateUserInfo(inputValues).then((res) => {
+      userInfo.setUserInfo(res);
+      modalEdit.close()
+    }).catch((err)=>{
+      console.log(err);
+    }).finally(() => {
+      renderLoading(form, false)
+    });
+  }
 });
 modalEdit.setEventListeners();
 
@@ -145,26 +168,35 @@ function fillEditModal(userInfo) {
 }
 
 //post a new card to server when submitting modalAdd form
-const modalAdd = new ModalWithForm(".modal-add", (item) => {
-  api.postCard(item).then((data) => {
-    const cardElement = getNewCardElement(data);
-    cardList.prepend(cardElement);
-    modalAdd.close()
-  });
+const modalAdd = new ModalWithForm({
+  modalSelector: ".modal-add",
+  handleFormSubmit: (item) => {
+    api.postCard(item).then((data) => {
+      const cardElement = getNewCardElement(data);
+      cardList.prepend(cardElement);
+      modalAdd.close()
+    }).catch((err)=>{
+      console.log(err);
+    });
 
+  }
 });
 modalAdd.setEventListeners();
 
 //updating avatar photo in server when submitting avatar edit form
-const modalAvatarEdit = new ModalWithForm(".modal-avatar-edit", (item, form) => {
-  renderLoading(form, true);
-  api.updateUserAvatar(item.avatar).then((res) => {
-    profileAvatar.src = res.avatar;
-    modalAvatarEdit.close()
-  }).finally(() => {
-    renderLoading(form, false)
-  });
-});
+const modalAvatarEdit = new ModalWithForm({
+  modalSelector: ".modal-avatar-edit",
+  handleFormSubmit: (item, form) => {
+    renderLoading(form, true);
+    api.updateUserAvatar(item.avatar).then((res) => {
+      profileAvatar.src = res.avatar;
+      modalAvatarEdit.close()
+    }).catch((err)=>{
+      console.log(err);
+    }).finally(() => {
+      renderLoading(form, false)
+    });
+}});
 modalAvatarEdit.setEventListeners();
 const avatarEditButton = document.querySelector(".profile__avatar-edit");
 avatarEditButton.addEventListener("click", () => { modalAvatarEdit.open(); });
