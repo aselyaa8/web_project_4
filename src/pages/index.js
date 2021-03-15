@@ -17,6 +17,10 @@ const api = new Api({
   }
 });
 
+const modalEditElement = document.querySelector(".modal-edit");
+const formName = modalEditElement.querySelector(".form__input_type_name");
+const formInfo = modalEditElement.querySelector(".form__input_type_description");
+
 const profileName = document.querySelector(".profile__name");
 const profileInfo = document.querySelector(".profile__description");
 const profileAvatar = document.querySelector(".profile__avatar");
@@ -64,7 +68,7 @@ const modalConfirmDelete = new ModalDeleteConfirmation({
     });
   }
 })
-
+modalConfirmDelete.setEventListeners();
 function getNewCardElement(item) {
   const card = new Card({
     object: item,
@@ -160,9 +164,6 @@ editButton.addEventListener('click', () => {
 });
 
 function fillEditModal(userInfo) {
-  const modalEdit = document.querySelector(".modal-edit");
-  const formName = modalEdit.querySelector(".form__input_type_name");
-  const formInfo = modalEdit.querySelector(".form__input_type_description");
   formName.value = userInfo.name;
   formInfo.value = userInfo.about;
 }
